@@ -22,9 +22,8 @@ body {
   justify-content: space-between;
   align-items: center;
 }
-.header .title {
-  font-size: 22px;
-  font-weight: bold;
+.header .logo {
+  height: 40px; /* 控制LOGO高度，可自行调整 */
 }
 .header .time {
   font-size: 14px;
@@ -32,24 +31,24 @@ body {
 .main-price {
   text-align: center;
   padding: 30px 20px;
+  display: flex;
+  justify-content: center;
+  gap: 60px; /* 控制金价和银价之间的间距 */
+  align-items: baseline;
+}
+.main-price .item {
+  text-align: center;
 }
 .main-price .label {
   font-size: 24px;
   color: #333;
   margin-bottom: 10px;
 }
-.main-price .gold-price {
+.main-price .price {
   font-size: 80px;
   font-weight: bold;
   color: #c8102e;
   line-height: 1;
-}
-.main-price .silver-price {
-  font-size: 40px;
-  font-weight: bold;
-  color: #c8102e;
-  line-height: 1.2;
-  margin-top: 10px;
 }
 .main-price .unit {
   font-size: 24px;
@@ -89,16 +88,22 @@ td {
 </head>
 <body>
 <div class="header">
-  <div class="title">实时贵金属</div>
+  <!-- 替换为你的LOGO：把logo.png改成你的图片文件名，或直接放图片URL -->
+  <img src="logo.png" class="logo" alt="实时贵金属LOGO">
   <div class="time" id="current-time">2025-10-03 10:56:57 营业中</div>
 </div>
 
 <div class="main-price">
-  <div class="label">今日金价</div>
-  <div class="gold-price" id="gold-price">880.41</div>
-  <div class="label">今日银价</div>
-  <div class="silver-price" id="silver-price">13.54</div>
-  <div class="unit">元/克</div>
+  <div class="item">
+    <div class="label">今日金价</div>
+    <div class="price" id="gold-price">880.41</div>
+    <div class="unit">元/克</div>
+  </div>
+  <div class="item">
+    <div class="label">今日银价</div>
+    <div class="price" id="silver-price">13.54</div>
+    <div class="unit">元/克</div>
+  </div>
 </div>
 
 <div class="table-box">
