@@ -5,40 +5,155 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>实时贵金属报价</title>
 <style>
-*{box-sizing:border-box}
-body{font-family:Arial,sans-serif;background:#f4f4f4;margin:0;padding:15px}
-.container{max-width:700px;margin:0 auto;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,0.1)}
-.title{background:#c9a850;color:#fff;font-size:20px;padding:14px;text-align:center;font-weight:bold}
-.sub-title{padding:8px 14px;background:#fff8e7;color:#666;font-size:14px;border-bottom:1px solid #eee}
-.table{width:100%;border-collapse:collapse}
-.table th{background:#f9f1e0;padding:11px;font-size:14px;color:#333}
-.table td{padding:11px;text-align:center;border-bottom:1px solid #eee;font-size:15px}
-.myr{color:#0066cc}
-.cny{color:#e63946}
-.price{font-weight:bold;color:#c9a850}
-.refresh{text-align:center;padding:10px;font-size:12px;color:#666}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: "Microsoft Yahei", Arial, sans-serif;
+  background: #fff;
+}
+.header {
+  background: #c8102e;
+  color: #fff;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header .title {
+  font-size: 22px;
+  font-weight: bold;
+}
+.header .time {
+  font-size: 14px;
+}
+.main-price {
+  text-align: center;
+  padding: 30px 20px;
+}
+.main-price .label {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 10px;
+}
+.main-price .gold-price {
+  font-size: 80px;
+  font-weight: bold;
+  color: #c8102e;
+  line-height: 1;
+}
+.main-price .silver-price {
+  font-size: 40px;
+  font-weight: bold;
+  color: #c8102e;
+  line-height: 1.2;
+  margin-top: 10px;
+}
+.main-price .unit {
+  font-size: 24px;
+  color: #333;
+  margin-top: 8px;
+}
+.table-box {
+  margin: 0 20px 20px;
+  border: 1px solid #ccc;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+td {
+  border: 1px solid #ccc;
+  padding: 12px;
+  text-align: center;
+  font-size: 16px;
+}
+.item-name {
+  color: #666;
+  font-size: 18px;
+}
+.item-price {
+  color: #c8102e;
+  font-size: 24px;
+  font-weight: bold;
+}
+.myr {
+  color: #0066cc;
+}
+.cny {
+  color: #e63946;
+}
 </style>
 </head>
 <body>
-<div class="container">
-  <div class="title">贵金属实时报价</div>
-  <div class="sub-title">数据来源：伦敦金 + 实时汇率 · 自动更新</div>
+<div class="header">
+  <div class="title">实时贵金属</div>
+  <div class="time" id="current-time">2025-10-03 10:56:57 营业中</div>
+</div>
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th>品类</th>
-        <th>买入价</th>
-        <th>卖出价</th>
-        <th>币种</th>
-      </tr>
-    </thead>
-    <tbody id="price-list">
-      <!-- 自动填充 -->
-    </tbody>
+<div class="main-price">
+  <div class="label">今日金价</div>
+  <div class="gold-price" id="gold-price">880.41</div>
+  <div class="label">今日银价</div>
+  <div class="silver-price" id="silver-price">13.54</div>
+  <div class="unit">元/克</div>
+</div>
+
+<div class="table-box">
+  <table>
+    <tr>
+      <td>
+        <div class="item-name">黄金原料9999 买进</div>
+        <div class="item-price myr" id="gold-raw-buy">0.00</div>
+      </td>
+      <td>
+        <div class="item-name">黄金原料9999 卖出</div>
+        <div class="item-price myr" id="gold-raw-sell">0.00</div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="item-name">黄金首饰AU9999/AU999 买进</div>
+        <div class="item-price myr" id="gold-jewelry-buy">0.00</div>
+      </td>
+      <td>
+        <div class="item-name">黄金首饰AU9999/AU999 卖出</div>
+        <div class="item-price myr" id="gold-jewelry-sell">0.00</div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="item-name">白银原料9999 买进</div>
+        <div class="item-price myr" id="silver-raw-buy">0.00</div>
+      </td>
+      <td>
+        <div class="item-name">白银原料9999 卖出</div>
+        <div class="item-price myr" id="silver-raw-sell">0.00</div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="item-name">白银首饰AG9999/AG999 买进</div>
+        <div class="item-price myr" id="silver-jewelry-buy">0.00</div>
+      </td>
+      <td>
+        <div class="item-name">白银首饰AG9999/AG999 卖出</div>
+        <div class="item-price myr" id="silver-jewelry-sell">0.00</div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="item-name">中国投资金 买进</div>
+        <div class="item-price cny" id="china-invest-gold">0.00</div>
+      </td>
+      <td>
+        <div class="item-name">黄金回收</div>
+        <div class="item-price cny" id="gold-recycle">848.91</div>
+      </td>
+    </tr>
   </table>
-
-  <div class="refresh">刷新页面更新最新价格</div>
 </div>
 
 <script>
@@ -56,68 +171,72 @@ const CONFIG = {
 }
 // =================================================================
 
+function updateTime() {
+  const now = new Date();
+  const y = now.getFullYear();
+  const m = String(now.getMonth()+1).padStart(2, '0');
+  const d = String(now.getDate()).padStart(2, '0');
+  const h = String(now.getHours()).padStart(2, '0');
+  const min = String(now.getMinutes()).padStart(2, '0');
+  const s = String(now.getSeconds()).padStart(2, '0');
+  document.getElementById('current-time').textContent = 
+    `${y}-${m}-${d} ${h}:${min}:${s} 营业中`;
+}
+
 async function loadPrice() {
   try {
-    // 模拟实时数据（上线后我帮你换成真实免费API）
+    // 模拟实时数据（后续可替换为真实API）
     const mockData = {
-      goldUSD: 2100,     // 伦敦金 美元/盎司
+      goldUSD: 2800,     // 伦敦金 美元/盎司
       usdMyr: 4.70,      // 美元兑马币
-      usdCny: 7.20       // 美元兑人民币
+      usdCny: 7.20,      // 美元兑人民币
+      silverUSD: 25      // 伦敦银 美元/盎司
     }
 
     const oz = 31.1035
     const goldMyrPerG = mockData.goldUSD * mockData.usdMyr / oz
     const goldCnyPerG = mockData.goldUSD * mockData.usdCny / oz
-    const silverMyrPerG = 0.5 // 你可换成银价
+    const silverMyrPerG = mockData.silverUSD * mockData.usdMyr / oz
+    const silverCnyPerG = mockData.silverUSD * mockData.usdCny / oz
 
-    const list = [
-      {
-        name: "黄金原料 9999",
-        buy: (goldMyrPerG - CONFIG.goldSpread/2).toFixed(2),
-        sell: (goldMyrPerG + CONFIG.goldSpread/2).toFixed(2),
-        currency: "MYR"
-      },
-      {
-        name: "黄金首饰 AU9999/AU999",
-        buy: (goldMyrPerG + CONFIG.goldJewelryPremium - CONFIG.goldJewelrySpread/2).toFixed(2),
-        sell: (goldMyrPerG + CONFIG.goldJewelryPremium + CONFIG.goldJewelrySpread/2).toFixed(2),
-        currency: "MYR"
-      },
-      {
-        name: "白银原料 9999",
-        buy: (silverMyrPerG - CONFIG.silverSpread/2).toFixed(2),
-        sell: (silverMyrPerG + CONFIG.silverSpread/2).toFixed(2),
-        currency: "MYR"
-      },
-      {
-        name: "白银首饰 AG9999/AG999",
-        buy: (silverMyrPerG + CONFIG.silverJewelryPremium - CONFIG.silverJewelrySpread/2).toFixed(2),
-        sell: (silverMyrPerG + CONFIG.silverJewelryPremium + CONFIG.silverJewelrySpread/2).toFixed(2),
-        currency: "MYR"
-      },
-      {
-        name: "中国投资金",
-        buy: goldCnyPerG.toFixed(2),
-        sell: "—",
-        currency: "CNY"
-      }
-    ]
+    // 更新顶部今日金价/银价（人民币显示）
+    document.getElementById('gold-price').textContent = goldCnyPerG.toFixed(2)
+    document.getElementById('silver-price').textContent = silverCnyPerG.toFixed(2)
 
-    const html = list.map(item => `
-      <tr>
-        <td>${item.name}</td>
-        <td class="price">${item.buy}</td>
-        <td class="price">${item.sell}</td>
-        <td class="${item.currency === 'MYR' ? 'myr' : 'cny'}">${item.currency}</td>
-      </tr>
-    `).join('')
+    // 黄金原料
+    document.getElementById('gold-raw-buy').textContent = 
+      (goldMyrPerG - CONFIG.goldSpread/2).toFixed(2)
+    document.getElementById('gold-raw-sell').textContent = 
+      (goldMyrPerG + CONFIG.goldSpread/2).toFixed(2)
 
-    document.getElementById('price-list').innerHTML = html
+    // 黄金首饰
+    document.getElementById('gold-jewelry-buy').textContent = 
+      (goldMyrPerG + CONFIG.goldJewelryPremium - CONFIG.goldJewelrySpread/2).toFixed(2)
+    document.getElementById('gold-jewelry-sell').textContent = 
+      (goldMyrPerG + CONFIG.goldJewelryPremium + CONFIG.goldJewelrySpread/2).toFixed(2)
+
+    // 白银原料
+    document.getElementById('silver-raw-buy').textContent = 
+      (silverMyrPerG - CONFIG.silverSpread/2).toFixed(2)
+    document.getElementById('silver-raw-sell').textContent = 
+      (silverMyrPerG + CONFIG.silverSpread/2).toFixed(2)
+
+    // 白银首饰
+    document.getElementById('silver-jewelry-buy').textContent = 
+      (silverMyrPerG + CONFIG.silverJewelryPremium - CONFIG.silverJewelrySpread/2).toFixed(2)
+    document.getElementById('silver-jewelry-sell').textContent = 
+      (silverMyrPerG + CONFIG.silverJewelryPremium + CONFIG.silverJewelrySpread/2).toFixed(2)
+
+    // 中国投资金
+    document.getElementById('china-invest-gold').textContent = 
+      goldCnyPerG.toFixed(2)
   } catch(e){
     console.error(e)
   }
 }
 
+updateTime()
+setInterval(updateTime, 1000)
 loadPrice()
 </script>
 </body>
