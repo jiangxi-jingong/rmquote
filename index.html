@@ -11,7 +11,6 @@
             box-sizing: border-box;
             font-family: Arial, sans-serif;
         }
-
         body {
             background-color: #f5f5f5;
             display: flex;
@@ -19,10 +18,8 @@
             align-items: flex-start;
             min-height: 100vh;
             padding: 20px;
-            gap: 20px; /* 报价盘和编辑面板间距 */
+            gap: 20px;
         }
-
-        /* 报价盘容器 */
         .price-board {
             width: 582px;
             background-color: #fff;
@@ -30,8 +27,6 @@
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
             overflow: hidden;
         }
-
-        /* 价格编辑面板 */
         .price-editor {
             width: 380px;
             background-color: #fff;
@@ -39,7 +34,6 @@
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
             padding: 20px;
         }
-
         .editor-title {
             font-size: 18px;
             font-weight: bold;
@@ -48,40 +42,33 @@
             border-bottom: 1px solid #eee;
             padding-bottom: 10px;
         }
-
-        /* SELL/BUY 编辑分区 */
         .editor-section {
             margin-bottom: 20px;
             padding-bottom: 15px;
             border-bottom: 1px dashed #eee;
         }
-
         .editor-section:last-child {
             margin-bottom: 0;
             padding-bottom: 0;
             border-bottom: none;
         }
-
         .section-title {
             font-size: 16px;
             font-weight: bold;
             color: #c49871;
             margin-bottom: 10px;
         }
-
         .editor-item {
             display: flex;
             align-items: center;
             margin-bottom: 8px;
             gap: 8px;
         }
-
         .editor-label {
             width: 100px;
             font-size: 14px;
             color: #666;
         }
-
         .editor-btn {
             width: 30px;
             height: 30px;
@@ -93,11 +80,9 @@
             cursor: pointer;
             transition: background-color 0.2s;
         }
-
         .editor-btn:hover {
             background-color: #a87c55;
         }
-
         .editor-value {
             width: 80px;
             text-align: center;
@@ -106,27 +91,21 @@
             border: 1px solid #eee;
             border-radius: 4px;
         }
-
-        /* 顶部标题栏 */
         .header {
             background-color: #c49871;
             color: #fff;
             padding: 15px 20px;
             position: relative;
         }
-
         .header h1 {
             font-size: 24px;
             font-weight: bold;
             margin-bottom: 5px;
         }
-
         .header p {
             font-size: 16px;
             opacity: 0.9;
         }
-
-        /* 实时时间区域 */
         .datetime {
             position: absolute;
             top: 15px;
@@ -134,26 +113,14 @@
             text-align: right;
             font-size: 14px;
         }
-
-        /* 实时更新状态提示 */
-        .update-status {
-            position: absolute;
-            bottom: 10px;
-            right: 20px;
-            font-size: 12px;
-            opacity: 0.8;
-        }
-
-        /* WE SELL/WE BUY 独立标题行 - 核心调整：WE SELL左移 */
         .trade-title-row {
             display: flex;
             justify-content: flex-end;
             padding: 10px 35px 5px;
             background-color: #f8f8f8;
             border-bottom: 1px solid #eee;
-            position: relative; /* 新增：用于定位WE SELL */
+            position: relative;
         }
-
         .trade-title {
             width: 28%;
             text-align: center;
@@ -162,43 +129,33 @@
             color: #000;
             margin: 0;
         }
-
-        /* 关键调整：WE SELL总计左移约5个字母宽度 */
         .trade-title:first-child {
             position: relative;
             right: 40px;
         }
-
-        /* 报价行样式 */
         .price-row {
             display: flex;
             padding: 10px 20px;
             border-bottom: 1px solid #eee;
             align-items: center;
         }
-
-        /* 左侧商品信息 */
         .product-info {
             width: 35%;
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
-
         .product-info h3 {
             font-size: 18px;
             font-weight: bold;
             color: #000;
             margin: 0;
         }
-
         .product-info p {
             font-size: 12px;
             color: #666;
             margin-top: 3px;
         }
-
-        /* 右侧价格区域 */
         .price-cols {
             width: 65%;
             display: flex;
@@ -206,14 +163,10 @@
             align-items: center;
             padding: 0 15px;
         }
-
-        /* 单个价格列 */
         .price-column {
             width: 45%;
             text-align: center;
         }
-
-        /* 价格数字样式 */
         .price-value {
             font-size: 24px;
             font-weight: bold;
@@ -221,47 +174,34 @@
             margin-bottom: 3px;
             transition: all 0.3s ease;
         }
-
         .price-value.flash {
             animation: flash 0.5s ease;
         }
-
         @keyframes flash {
             0% { opacity: 0.5; transform: scale(1); }
             50% { opacity: 1; transform: scale(1.05); }
             100% { opacity: 1; transform: scale(1); }
         }
-
         .price-unit {
             font-size: 14px;
             color: #333;
         }
-
-        /* 最后一行去掉边框 */
         .price-row:last-child {
             border-bottom: none;
         }
     </style>
 </head>
 <body>
-    <!-- 报价展示面板 -->
     <div class="price-board">
-        <!-- 顶部标题和实时时间 -->
         <div class="header">
             <h1>匠禧金工今日价格</h1>
-            <p>基于实时贵金属报价</p>
+            <p>基于专业API实时报价</p>
             <div class="datetime" id="realTime"></div>
-            <!-- 新增：实时更新状态提示 -->
-            <div class="update-status" id="updateStatus">首次加载中...</div>
         </div>
-
-        <!-- WE SELL/WE BUY 独立一行 -->
         <div class="trade-title-row">
             <div class="trade-title">WE SELL</div>
             <div class="trade-title">WE BUY</div>
         </div>
-
-        <!-- 黄金首饰 -->
         <div class="price-row">
             <div class="product-info">
                 <h3>Gold Jewellery</h3>
@@ -269,17 +209,15 @@
             </div>
             <div class="price-cols">
                 <div class="price-column">
-                    <div class="price-value" id="goldJewellerySell">加载中...</div>
+                    <div class="price-value" id="goldJewellerySell">0</div>
                     <div class="price-unit">MYR/Gram</div>
                 </div>
                 <div class="price-column">
-                    <div class="price-value" id="goldJewelleryBuy">加载中...</div>
+                    <div class="price-value" id="goldJewelleryBuy">0</div>
                     <div class="price-unit">MYR/Gram</div>
                 </div>
             </div>
         </div>
-
-        <!-- 金条 -->
         <div class="price-row">
             <div class="product-info">
                 <h3>Gold Bars</h3>
@@ -287,17 +225,15 @@
             </div>
             <div class="price-cols">
                 <div class="price-column">
-                    <div class="price-value" id="goldBarsSell">加载中...</div>
+                    <div class="price-value" id="goldBarsSell">0</div>
                     <div class="price-unit">MYR/Gram</div>
                 </div>
                 <div class="price-column">
-                    <div class="price-value" id="goldBarsBuy">加载中...</div>
+                    <div class="price-value" id="goldBarsBuy">0</div>
                     <div class="price-unit">MYR/Gram</div>
                 </div>
             </div>
         </div>
-
-        <!-- 银首饰 -->
         <div class="price-row">
             <div class="product-info">
                 <h3>Silver Jewellery</h3>
@@ -305,17 +241,15 @@
             </div>
             <div class="price-cols">
                 <div class="price-column">
-                    <div class="price-value" id="silverJewellerySell">加载中...</div>
+                    <div class="price-value" id="silverJewellerySell">0</div>
                     <div class="price-unit">MYR/Gram</div>
                 </div>
                 <div class="price-column">
-                    <div class="price-value" id="silverJewelleryBuy">加载中...</div>
+                    <div class="price-value" id="silverJewelleryBuy">0</div>
                     <div class="price-unit">MYR/Gram</div>
                 </div>
             </div>
         </div>
-
-        <!-- 银条 -->
         <div class="price-row">
             <div class="product-info">
                 <h3>Silver Bars</h3>
@@ -323,17 +257,15 @@
             </div>
             <div class="price-cols">
                 <div class="price-column">
-                    <div class="price-value" id="silverBarsSell">加载中...</div>
+                    <div class="price-value" id="silverBarsSell">0</div>
                     <div class="price-unit">MYR/Gram</div>
                 </div>
                 <div class="price-column">
-                    <div class="price-value" id="silverBarsBuy">加载中...</div>
+                    <div class="price-value" id="silverBarsBuy">0</div>
                     <div class="price-unit">MYR/Gram</div>
                 </div>
             </div>
         </div>
-
-        <!-- 中国黄金 -->
         <div class="price-row">
             <div class="product-info">
                 <h3>CHINA GOLD</h3>
@@ -341,17 +273,15 @@
             </div>
             <div class="price-cols">
                 <div class="price-column">
-                    <div class="price-value" id="chinaGoldSell">加载中...</div>
+                    <div class="price-value" id="chinaGoldSell">0</div>
                     <div class="price-unit">CNY/G</div>
                 </div>
                 <div class="price-column">
-                    <div class="price-value" id="chinaGoldBuy">加载中...</div>
+                    <div class="price-value" id="chinaGoldBuy">0</div>
                     <div class="price-unit">CNY/G</div>
                 </div>
             </div>
         </div>
-
-        <!-- 中国白银 -->
         <div class="price-row">
             <div class="product-info">
                 <h3>CHINA SILVER</h3>
@@ -359,60 +289,50 @@
             </div>
             <div class="price-cols">
                 <div class="price-column">
-                    <div class="price-value" id="chinaSilverSell">加载中...</div>
+                    <div class="price-value" id="chinaSilverSell">0</div>
                     <div class="price-unit">CNY/G</div>
                 </div>
                 <div class="price-column">
-                    <div class="price-value" id="chinaSilverBuy">加载中...</div>
+                    <div class="price-value" id="chinaSilverBuy">0</div>
                     <div class="price-unit">CNY/G</div>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- 价格编辑面板（拆分SELL/BUY独立编辑） -->
     <div class="price-editor">
         <div class="editor-title">价格编辑面板</div>
-        
-        <!-- WE SELL 编辑区 -->
         <div class="editor-section">
-            <div class="section-title">🔹 WE SELL 价格调整</div>
-            <!-- 黄金首饰 SELL -->
+            <div class="section-title">🔹 WE SELL 价格偏移</div>
             <div class="editor-item">
                 <span class="editor-label">黄金首饰</span>
                 <button class="editor-btn minus" data-type="sell" data-id="goldJewellery">-</button>
                 <span class="editor-value" id="edit-goldJewellerySell">0</span>
                 <button class="editor-btn plus" data-type="sell" data-id="goldJewellery">+</button>
             </div>
-            <!-- 金条 SELL -->
             <div class="editor-item">
                 <span class="editor-label">金条</span>
                 <button class="editor-btn minus" data-type="sell" data-id="goldBars">-</button>
                 <span class="editor-value" id="edit-goldBarsSell">0</span>
                 <button class="editor-btn plus" data-type="sell" data-id="goldBars">+</button>
             </div>
-            <!-- 银首饰 SELL -->
             <div class="editor-item">
                 <span class="editor-label">银首饰</span>
                 <button class="editor-btn minus" data-type="sell" data-id="silverJewellery">-</button>
                 <span class="editor-value" id="edit-silverJewellerySell">0</span>
                 <button class="editor-btn plus" data-type="sell" data-id="silverJewellery">+</button>
             </div>
-            <!-- 银条 SELL -->
             <div class="editor-item">
                 <span class="editor-label">银条</span>
                 <button class="editor-btn minus" data-type="sell" data-id="silverBars">-</button>
                 <span class="editor-value" id="edit-silverBarsSell">0</span>
                 <button class="editor-btn plus" data-type="sell" data-id="silverBars">+</button>
             </div>
-            <!-- 中国黄金 SELL -->
             <div class="editor-item">
                 <span class="editor-label">中国黄金</span>
                 <button class="editor-btn minus" data-type="sell" data-id="chinaGold">-</button>
                 <span class="editor-value" id="edit-chinaGoldSell">0</span>
                 <button class="editor-btn plus" data-type="sell" data-id="chinaGold">+</button>
             </div>
-            <!-- 中国白银 SELL -->
             <div class="editor-item">
                 <span class="editor-label">中国白银</span>
                 <button class="editor-btn minus" data-type="sell" data-id="chinaSilver">-</button>
@@ -420,46 +340,38 @@
                 <button class="editor-btn plus" data-type="sell" data-id="chinaSilver">+</button>
             </div>
         </div>
-
-        <!-- WE BUY 编辑区 -->
         <div class="editor-section">
-            <div class="section-title">🔹 WE BUY 价格调整</div>
-            <!-- 黄金首饰 BUY -->
+            <div class="section-title">🔹 WE BUY 价格偏移</div>
             <div class="editor-item">
                 <span class="editor-label">黄金首饰</span>
                 <button class="editor-btn minus" data-type="buy" data-id="goldJewellery">-</button>
                 <span class="editor-value" id="edit-goldJewelleryBuy">0</span>
                 <button class="editor-btn plus" data-type="buy" data-id="goldJewellery">+</button>
             </div>
-            <!-- 金条 BUY -->
             <div class="editor-item">
                 <span class="editor-label">金条</span>
                 <button class="editor-btn minus" data-type="buy" data-id="goldBars">-</button>
                 <span class="editor-value" id="edit-goldBarsBuy">0</span>
                 <button class="editor-btn plus" data-type="buy" data-id="goldBars">+</button>
             </div>
-            <!-- 银首饰 BUY -->
             <div class="editor-item">
                 <span class="editor-label">银首饰</span>
                 <button class="editor-btn minus" data-type="buy" data-id="silverJewellery">-</button>
                 <span class="editor-value" id="edit-silverJewelleryBuy">0</span>
                 <button class="editor-btn plus" data-type="buy" data-id="silverJewellery">+</button>
             </div>
-            <!-- 银条 BUY -->
             <div class="editor-item">
                 <span class="editor-label">银条</span>
                 <button class="editor-btn minus" data-type="buy" data-id="silverBars">-</button>
                 <span class="editor-value" id="edit-silverBarsBuy">0</span>
                 <button class="editor-btn plus" data-type="buy" data-id="silverBars">+</button>
             </div>
-            <!-- 中国黄金 BUY -->
             <div class="editor-item">
                 <span class="editor-label">中国黄金</span>
                 <button class="editor-btn minus" data-type="buy" data-id="chinaGold">-</button>
                 <span class="editor-value" id="edit-chinaGoldBuy">0</span>
                 <button class="editor-btn plus" data-type="buy" data-id="chinaGold">+</button>
             </div>
-            <!-- 中国白银 BUY -->
             <div class="editor-item">
                 <span class="editor-label">中国白银</span>
                 <button class="editor-btn minus" data-type="buy" data-id="chinaSilver">-</button>
@@ -471,31 +383,67 @@
 
     <script>
         const CONFIG = {
-            // 2026年基准汇率（如果有实时汇率接口，也可以替换这里）
-            USD_TO_CNY: 7.38,    // 1美元=7.38人民币
-            CNY_TO_MYR: 0.652,    // 1人民币=0.652马币
-            OUNCE_TO_GRAM: 31.1035,
-            GOLD_SPREAD: 0.02,
-            SILVER_SPREAD: 0.03,
-            GOLD_JEWELLERY_PREMIUM_MYR: 8,
-            SILVER_JEWELLERY_PREMIUM_MYR: 0.3,
-            GOLD_JEWELLERY_PREMIUM_CNY: 5,
-            SILVER_JEWELLERY_PREMIUM_CNY: 0.2,
-            // 实时更新配置
-            UPDATE_INTERVAL: 30000, // 30秒更新一次（可调整）
-            // ========== 【需要你替换的位置1：贵金属实时接口】 ==========
-            // 替换成你能访问的贵金属实时价格接口（返回XAUUSD、XAGUSD）
-            PRECIOUS_METAL_API: "https://你的贵金属实时接口地址",
-            // =======================================================
-            // 备用基准价（接口请求失败时使用）
+            // 固定参数
+            OUNCE_TO_GRAM: 31.1035, // 盎司转克系数
+            GOLD_SPREAD: 0.02, // 黄金买卖价差比例
+            SILVER_SPREAD: 0.03, // 白银买卖价差比例
+            GOLD_JEWELLERY_PREMIUM_MYR: 8,// 黄金首饰马币溢价
+            SILVER_JEWELLERY_PREMIUM_MYR: 0.3,// 白银首饰马币溢价
+            GOLD_JEWELLERY_PREMIUM_CNY: 5,// 黄金首饰人民币溢价
+            SILVER_JEWELLERY_PREMIUM_CNY: 0.2,// 白银首饰人民币溢价
+            
+            // ========== 替换为你的API配置 ==========
+            API_CONFIG: {
+                BASE_URL: "https://api.t1qq.com/api/v1/tool/daygold", // 你的API地址
+                API_KEY: "HEyLbNy5jHPc96XANZhVTSeCJa", // 你的API Key
+                SK: "61ee2f1ac8e28731b3b49583d66e2cc1", // 签名SK（未开启则留空）
+                ENABLE_SIGN: true, // 是否开启签名验证
+                REQUEST_INTERVAL: 3000, // API请求间隔（3秒/次，避免频率超限）
+                HEADERS: {
+                    'Accept-Encoding': 'gzip',
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+                }
+            },
+
+            // 固定汇率
+            FIXED_EXCHANGE: {
+                USD_TO_CNY: 7.38, // 美元兑人民币
+                USD_TO_MYR: 4.72  // 美元兑马币
+            },
+            
+            // 备用价格（API失败时使用）
             BACKUP_PRICES: {
-                XAUUSD: 2850, // 黄金基准：2850美元/盎司
-                XAGUSD: 38.5  // 白银基准：38.5美元/盎司
+                GOLD_CNY_PER_GRAM: 480, // 黄金人民币备用价（元/克）
+                SILVER_CNY_PER_GRAM: 6.5 // 白银人民币备用价（元/克）
+            },
+            
+            // 编辑面板数值范围
+            PRICE_OFFSET_MIN: -999,
+            PRICE_OFFSET_MAX: 999
+        };
+
+        // 存储基础价格（实时计算的原始价格）
+        let basePrices = {
+            sell: {
+                goldJewellery: 0,
+                goldBars: 0,
+                silverJewellery: 0,
+                silverBars: 0,
+                chinaGold: 0,
+                chinaSilver: 0
+            },
+            buy: {
+                goldJewellery: 0,
+                goldBars: 0,
+                silverJewellery: 0,
+                silverBars: 0,
+                chinaGold: 0,
+                chinaSilver: 0
             }
         };
 
-        // 存储当前价格（拆分SELL/BUY独立存储）
-        let currentPrices = {
+        // 存储编辑面板的偏移值（初始为0）
+        let priceOffsets = {
             sell: {
                 goldJewellery: 0,
                 goldBars: 0,
@@ -529,194 +477,356 @@
             const time = `${hours}:${minutes}:${seconds} ${period}`;
             const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
             const weekday = weekdays[now.getDay()];
-            
-            document.getElementById('realTime').innerHTML = `
-                ${date}<br>
-                ${time}<br>
-                ${weekday}
-            `;
+            document.getElementById('realTime').innerHTML = `${date}<br>${time}<br>${weekday}`;
         }
 
-        // ========== 【需要你替换的位置2：接口数据解析逻辑】 ==========
-        // 从实时接口获取贵金属价格（XAUUSD=黄金美元/盎司，XAGUSD=白银美元/盎司）
-        async function getRealTimePrices() {
+        // ========== 核心：调用你的API获取贵金属价格 ==========
+        async function getPriceFromAPI() {
             try {
-                // 1. 请求实时接口
-                const response = await fetch(CONFIG.PRECIOUS_METAL_API, {
+                // 1. 构造请求参数
+                const params = new URLSearchParams();
+                params.append('key', CONFIG.API_CONFIG.API_KEY);
+                params.append('date', new Date().toISOString().split('T')[0]); // 当日日期
+                params.append('type', 'all'); // 获取全部类型
+                
+                // 2. 生成签名（如果开启）
+                let sign = '';
+                if (CONFIG.API_CONFIG.ENABLE_SIGN && CONFIG.API_CONFIG.SK) {
+                    const paramStr = params.toString();
+                    sign = md5(paramStr + CONFIG.API_CONFIG.SK); // 签名逻辑和PHP版保持一致
+                }
+
+                // 3. 构造请求头
+                const headers = { ...CONFIG.API_CONFIG.HEADERS };
+                if (sign) headers['sign'] = sign;
+
+                // 4. 发送请求
+                const response = await fetch(`${CONFIG.API_CONFIG.BASE_URL}?${params.toString()}`, {
                     method: 'GET',
-                    // 如果接口需要请求头/参数，在这里添加
-                    // headers: {
-                    //     'Authorization': 'Bearer 你的接口密钥',
-                    //     'Content-Type': 'application/json'
-                    // }
+                    mode: 'cors',
+                    cache: 'no-cache',
+                    headers: headers
                 });
-                
-                if (!response.ok) throw new Error(`接口请求失败：${response.status}`);
-                
-                // 2. 解析接口返回数据（根据你的接口返回格式修改这里！）
-                // 示例：如果接口返回 {"XAUUSD":2852.5,"XAGUSD":38.6}，则直接取
+
+                // 5. 解析响应
                 const data = await response.json();
                 
-                // 3. 返回解析后的黄金/白银价格（必须返回xauusd和xagusd）
-                return {
-                    xauusd: parseFloat(data.XAUUSD) || CONFIG.BACKUP_PRICES.XAUUSD,
-                    xagusd: parseFloat(data.XAGUSD) || CONFIG.BACKUP_PRICES.XAGUSD
-                };
+                // 6. 校验响应是否成功
+                if (data.code === 200 && data.data) {
+                    console.log('API获取价格成功：', data);
+                    // 提取黄金、白银基础价（适配API返回结构）
+                    const goldCnyPerGram = data.data.gold_price || CONFIG.BACKUP_PRICES.GOLD_CNY_PER_GRAM;
+                    const silverCnyPerGram = data.data.silver_price || CONFIG.BACKUP_PRICES.SILVER_CNY_PER_GRAM;
+                    return { goldCnyPerGram, silverCnyPerGram };
+                } else {
+                    console.error('API响应异常', data);
+                    return null;
+                }
             } catch (error) {
-                // 接口请求失败时，使用备用价格并提示
-                console.error('实时价格接口请求失败：', error);
-                updateStatus(`数据更新失败（使用备用价）：${error.message}`);
-                return {
-                    xauusd: CONFIG.BACKUP_PRICES.XAUUSD + (Math.random() - 0.5) * 3,
-                    xagusd: CONFIG.BACKUP_PRICES.XAGUSD + (Math.random() - 0.5) * 0.2
-                };
+                console.error('API请求失败', error);
+                return null;
             }
         }
-        // =======================================================
 
-        // 更新实时状态提示
-        function updateStatus(message) {
-            const statusEl = document.getElementById('updateStatus');
-            statusEl.textContent = message;
-            // 5秒后恢复默认提示
-            setTimeout(() => {
-                statusEl.textContent = `最后更新：${new Date().toLocaleTimeString()}`;
-            }, 5000);
+        // MD5加密函数（用于签名，和PHP版md5保持一致）
+        function md5(str) {
+            function r(n, t) {
+                return (n << t) | (n >>> (32 - t));
+            }
+            function i(n, t) {
+                let e, o, a, u, f;
+                o = (n & 65535) + (t & 65535);
+                a = (n >> 16) + (t >> 16) + (o >> 16);
+                return (a << 16) | (o & 65535);
+            }
+            function e(n, t) {
+                return (n & t) | (~n & f);
+            }
+            function o(n, t) {
+                return (n & f) | (t & ~f);
+            }
+            function a(n, t) {
+                return n ^ t ^ f;
+            }
+            function u(n, t) {
+                return t ^ (n | ~f);
+            }
+            function f(n, t, r) {
+                return (n & t) | (n & r) | (t & r);
+            }
+            function d(n, t, r) {
+                return (n & t) | (~n & r);
+            }
+            function c(n, t, e, o, a, u, f) {
+                n = i(n, i(i(f(e, t, r), o), u));
+                return i(r(n, a), e);
+            }
+            function l(n, t, e, o, a, u, f) {
+                n = i(n, i(i(d(e, t, r), o), u));
+                return i(r(n, a), e);
+            }
+            function h(n, t, e, o, a, u, f) {
+                n = i(n, i(i(a(e, t, r), o), u));
+                return i(r(n, a), e);
+            }
+            function p(n, t, e, o, a, u, f) {
+                n = i(n, i(i(u(e, t, r), o), u));
+                return i(r(n, a), e);
+            }
+            function m(n) {
+                let t = unescape(encodeURIComponent(n)),
+                    e = t.length,
+                    o = [],
+                    a = 0;
+                for (; a < e; a++)
+                    o[a >> 2] |= t.charCodeAt(a) << (24 - (a % 4) * 8);
+                o[o.length] |= 128 << (24 - (e % 4) * 8);
+                o[Math.floor((e + 8) / 64) * 16 + 14] = e * 8;
+                return o;
+            }
+            function v(n) {
+                let t = "",
+                    e = 0;
+                for (; e < 32; e += 8)
+                    t += ((n >> (24 - e)) & 255).toString(16).padStart(2, "0");
+                return t;
+            }
+            let t = m(str),
+                e = 1732584193,
+                o = 4023233417,
+                a = 2562383102,
+                u = 271733878,
+                f = 0;
+            for (f = 0; f < t.length; f += 16) {
+                let r = e,
+                    i = o,
+                    n = a,
+                    s = u;
+                e = c(e, o, a, u, t[f + 0], 7, 3614090360);
+                u = c(u, e, o, a, t[f + 1], 12, 3905402710);
+                a = c(a, u, e, o, t[f + 2], 17, 606105819);
+                o = c(o, a, u, e, t[f + 3], 22, 3250441966);
+                e = c(e, o, a, u, t[f + 4], 7, 4118548399);
+                u = c(u, e, o, a, t[f + 5], 12, 1200080426);
+                a = c(a, u, e, o, t[f + 6], 17, 2821735955);
+                o = c(o, a, u, e, t[f + 7], 22, 4249261313);
+                e = c(e, o, a, u, t[f + 8], 7, 1770035416);
+                u = c(u, e, o, a, t[f + 9], 12, 2336552879);
+                a = c(a, u, e, o, t[f + 10], 17, 4294925233);
+                o = c(o, a, u, e, t[f + 11], 22, 2304563134);
+                e = c(e, o, a, u, t[f + 12], 7, 1804603682);
+                u = c(u, e, o, a, t[f + 13], 12, 4254626195);
+                a = c(a, u, e, o, t[f + 14], 17, 2792965006);
+                o = c(o, a, u, e, t[f + 15], 22, 1236535329);
+                e = l(e, o, a, u, t[f + 1], 5, 4129170786);
+                u = l(u, e, o, a, t[f + 6], 9, 3225465664);
+                a = l(a, u, e, o, t[f + 11], 14, 643717713);
+                o = l(o, a, u, e, t[f + 0], 20, 3921069994);
+                e = l(e, o, a, u, t[f + 5], 5, 3593408605);
+                u = l(u, e, o, a, t[f + 10], 9, 38016083);
+                a = l(a, u, e, o, t[f + 15], 14, 3634488961);
+                o = l(o, a, u, e, t[f + 4], 20, 3889429448);
+                e = l(e, o, a, u, t[f + 9], 5, 568446438);
+                u = l(u, e, o, a, t[f + 14], 9, 3275163606);
+                a = l(a, u, e, o, t[f + 3], 14, 4107603335);
+                o = l(o, a, u, e, t[f + 8], 20, 1163531501);
+                e = l(e, o, a, u, t[f + 13], 5, 2850285829);
+                u = l(u, e, o, a, t[f + 2], 9, 4243563512);
+                a = l(a, u, e, o, t[f + 7], 14, 1735328473);
+                o = l(o, a, u, e, t[f + 12], 20, 2368359562);
+                e = h(e, o, a, u, t[f + 5], 4, 4294588738);
+                u = h(u, e, o, a, t[f + 8], 11, 2272392833);
+                a = h(a, u, e, o, t[f + 11], 16, 1839030562);
+                o = h(o, a, u, e, t[f + 14], 23, 4259657740);
+                e = h(e, o, a, u, t[f + 1], 4, 2763975236);
+                u = h(u, e, o, a, t[f + 4], 11, 1272893353);
+                a = h(a, u, e, o, t[f + 7], 16, 4139469664);
+                o = h(o, a, u, e, t[f + 10], 23, 3200236656);
+                e = h(e, o, a, u, t[f + 13], 4, 681279174);
+                u = h(u, e, o, a, t[f + 0], 11, 3936430074);
+                a = h(a, u, e, o, t[f + 3], 16, 3572445317);
+                o = h(o, a, u, e, t[f + 6], 23, 76029189);
+                e = h(e, o, a, u, t[f + 9], 4, 3654602809);
+                u = h(u, e, o, a, t[f + 12], 11, 3873151461);
+                a = h(a, u, e, o, t[f + 15], 16, 530742520);
+                o = h(o, a, u, e, t[f + 2], 23, 3299628645);
+                e = p(e, o, a, u, t[f + 0], 6, 4096336452);
+                u = p(u, e, o, a, t[f + 7], 10, 1126891415);
+                a = p(a, u, e, o, t[f + 14], 15, 2878612391);
+                o = p(o, a, u, e, t[f + 5], 21, 4237533241);
+                e = p(e, o, a, u, t[f + 12], 6, 1700485571);
+                u = p(u, e, o, a, t[f + 3], 10, 2399980690);
+                a = p(a, u, e, o, t[f + 10], 15, 4293915773);
+                o = p(o, a, u, e, t[f + 1], 21, 2240044497);
+                e = p(e, o, a, u, t[f + 8], 6, 1873313359);
+                u = p(u, e, o, a, t[f + 15], 10, 4264355552);
+                a = p(a, u, e, o, t[f + 6], 15, 2734768916);
+                o = p(o, a, u, e, t[f + 13], 21, 1309151649);
+                e = p(e, o, a, u, t[f + 4], 6, 4149444226);
+                u = p(u, e, o, a, t[f + 11], 10, 3174756917);
+                a = p(a, u, e, o, t[f + 2], 15, 718787259);
+                o = p(o, a, u, e, t[f + 9], 21, 3951481745);
+                e = i(e, r);
+                o = i(o, i);
+                a = i(a, n);
+                u = i(u, s);
+            }
+            return (v(e) + v(o) + v(a) + v(u)).toLowerCase();
         }
 
-        // 核心换算逻辑（使用实时价格更新SELL/BUY价格）
-        async function updateRealTimePrices() {
+        // 核心逻辑：基于你的API价格计算基础价
+        async function updateBasePrices() {
             try {
-                updateStatus('正在更新实时价格...');
-                // 1. 获取实时贵金属价格
-                const { xauusd, xagusd } = await getRealTimePrices();
+                // 1. 获取API贵金属价格（优先用API，失败用备用价）
+                let goldCnyPerGram, silverCnyPerGram;
+                const apiData = await getPriceFromAPI();
                 
-                // 2. 计算基础单价
-                const goldCnyPerGram = (xauusd * CONFIG.USD_TO_CNY) / CONFIG.OUNCE_TO_GRAM;
-                const goldMyrPerGram = goldCnyPerGram * CONFIG.CNY_TO_MYR;
-                const silverCnyPerGram = (xagusd * CONFIG.USD_TO_CNY) / CONFIG.OUNCE_TO_GRAM;
-                const silverMyrPerGram = silverCnyPerGram * CONFIG.CNY_TO_MYR;
+                if (apiData) {
+                    goldCnyPerGram = apiData.goldCnyPerGram;
+                    silverCnyPerGram = apiData.silverCnyPerGram;
+                } else {
+                    // API失败时使用备用价
+                    goldCnyPerGram = CONFIG.BACKUP_PRICES.GOLD_CNY_PER_GRAM;
+                    silverCnyPerGram = CONFIG.BACKUP_PRICES.SILVER_CNY_PER_GRAM;
+                }
 
-                // 3. 更新SELL价格（加价逻辑）
-                currentPrices.sell.goldJewellery = Math.round(goldMyrPerGram * (1 + CONFIG.GOLD_SPREAD) + CONFIG.GOLD_JEWELLERY_PREMIUM_MYR);
-                currentPrices.sell.goldBars = Math.round(goldMyrPerGram * (1 + CONFIG.GOLD_SPREAD));
-                currentPrices.sell.silverJewellery = (silverMyrPerGram * (1 + CONFIG.SILVER_SPREAD) + CONFIG.SILVER_JEWELLERY_PREMIUM_MYR).toFixed(1);
-                currentPrices.sell.silverBars = (silverMyrPerGram * (1 + CONFIG.SILVER_SPREAD)).toFixed(1);
-                currentPrices.sell.chinaGold = (goldCnyPerGram * (1 + CONFIG.GOLD_SPREAD) + CONFIG.GOLD_JEWELLERY_PREMIUM_CNY).toFixed(1);
-                currentPrices.sell.chinaSilver = (silverCnyPerGram * (1 + CONFIG.SILVER_SPREAD) + CONFIG.SILVER_JEWELLERY_PREMIUM_CNY).toFixed(2);
+                // 2. 转换为马币单价（人民币转美元再转马币）
+                const goldUsdPerGram = goldCnyPerGram / CONFIG.FIXED_EXCHANGE.USD_TO_CNY;
+                const silverUsdPerGram = silverCnyPerGram / CONFIG.FIXED_EXCHANGE.USD_TO_CNY;
+                const goldMyrPerGram = goldUsdPerGram * CONFIG.FIXED_EXCHANGE.USD_TO_MYR;
+                const silverMyrPerGram = silverUsdPerGram * CONFIG.FIXED_EXCHANGE.USD_TO_MYR;
 
-                // 4. 更新BUY价格（减价逻辑）
-                currentPrices.buy.goldJewellery = Math.round(goldMyrPerGram * (1 - CONFIG.GOLD_SPREAD));
-                currentPrices.buy.goldBars = Math.round(goldMyrPerGram * (1 - CONFIG.GOLD_SPREAD));
-                currentPrices.buy.silverJewellery = (silverMyrPerGram * (1 - CONFIG.SILVER_SPREAD)).toFixed(1);
-                currentPrices.buy.silverBars = (silverMyrPerGram * (1 - CONFIG.SILVER_SPREAD)).toFixed(1);
-                currentPrices.buy.chinaGold = (goldCnyPerGram * (1 - CONFIG.GOLD_SPREAD)).toFixed(1);
-                currentPrices.buy.chinaSilver = (silverCnyPerGram * (1 - CONFIG.SILVER_SPREAD)).toFixed(2);
+                // 3. 更新基础SELL价格（卖出价）
+                basePrices.sell.goldJewellery = Math.round(goldMyrPerGram * (1 + CONFIG.GOLD_SPREAD) + CONFIG.GOLD_JEWELLERY_PREMIUM_MYR);
+                basePrices.sell.goldBars = Math.round(goldMyrPerGram * (1 + CONFIG.GOLD_SPREAD));
+                basePrices.sell.silverJewellery = (silverMyrPerGram * (1 + CONFIG.SILVER_SPREAD) + CONFIG.SILVER_JEWELLERY_PREMIUM_MYR).toFixed(1);
+                basePrices.sell.silverBars = (silverMyrPerGram * (1 + CONFIG.SILVER_SPREAD)).toFixed(1);
+                basePrices.sell.chinaGold = (goldCnyPerGram * (1 + CONFIG.GOLD_SPREAD) + CONFIG.GOLD_JEWELLERY_PREMIUM_CNY).toFixed(1);
+                basePrices.sell.chinaSilver = (silverCnyPerGram * (1 + CONFIG.SILVER_SPREAD) + CONFIG.SILVER_JEWELLERY_PREMIUM_CNY).toFixed(2);
 
-                // 5. 更新页面显示
-                updateEditorDisplay();
-                updatePriceDisplay();
-                updateStatus(`价格更新成功（黄金：$${xauusd.toFixed(2)}）`);
+                // 4. 更新基础BUY价格（买入价）
+                basePrices.buy.goldJewellery = Math.round(goldMyrPerGram * (1 - CONFIG.GOLD_SPREAD));
+                basePrices.buy.goldBars = Math.round(goldMyrPerGram * (1 - CONFIG.GOLD_SPREAD));
+                basePrices.buy.silverJewellery = (silverMyrPerGram * (1 - CONFIG.SILVER_SPREAD)).toFixed(1);
+                basePrices.buy.silverBars = (silverMyrPerGram * (1 - CONFIG.SILVER_SPREAD)).toFixed(1);
+                basePrices.buy.chinaGold = (goldCnyPerGram * (1 - CONFIG.GOLD_SPREAD)).toFixed(1);
+                basePrices.buy.chinaSilver = (silverCnyPerGram * (1 - CONFIG.SILVER_SPREAD)).toFixed(2);
+
+                // 5. 更新最终展示价格（基础价+偏移值）
+                updateFinalPriceDisplay();
             } catch (error) {
-                console.error('价格更新失败：', error);
-                updateStatus(`更新失败：${error.message}`);
+                console.error('基础价格更新失败', error);
             }
         }
 
-        // 更新编辑面板显示（SELL/BUY分别显示）
+        // 更新编辑面板显示（偏移值）
         function updateEditorDisplay() {
-            // 更新SELL编辑区
-            for (const key in currentPrices.sell) {
-                const element = document.getElementById(`edit-${key}Sell`);
-                if (element) {
-                    element.textContent = currentPrices.sell[key];
-                }
+            for (const key in priceOffsets.sell) {
+                const el = document.getElementById(`edit-${key}Sell`);
+                if (el) el.textContent = priceOffsets.sell[key];
             }
-            // 更新BUY编辑区
-            for (const key in currentPrices.buy) {
-                const element = document.getElementById(`edit-${key}Buy`);
-                if (element) {
-                    element.textContent = currentPrices.buy[key];
-                }
+            for (const key in priceOffsets.buy) {
+                const el = document.getElementById(`edit-${key}Buy`);
+                if (el) el.textContent = priceOffsets.buy[key];
             }
         }
 
-        // 更新报价面板显示（SELL/BUY独立显示）
-        function updatePriceDisplay() {
+        // 计算最终价格（基础价+偏移值）并更新展示
+        function updateFinalPriceDisplay() {
             // 黄金首饰
-            updatePriceElement('goldJewellerySell', currentPrices.sell.goldJewellery);
-            updatePriceElement('goldJewelleryBuy', currentPrices.buy.goldJewellery);
+            updatePriceElement('goldJewellerySell', parseFloat(basePrices.sell.goldJewellery) + parseFloat(priceOffsets.sell.goldJewellery));
+            updatePriceElement('goldJewelleryBuy', parseFloat(basePrices.buy.goldJewellery) + parseFloat(priceOffsets.buy.goldJewellery));
             
             // 金条
-            updatePriceElement('goldBarsSell', currentPrices.sell.goldBars);
-            updatePriceElement('goldBarsBuy', currentPrices.buy.goldBars);
+            updatePriceElement('goldBarsSell', parseFloat(basePrices.sell.goldBars) + parseFloat(priceOffsets.sell.goldBars));
+            updatePriceElement('goldBarsBuy', parseFloat(basePrices.buy.goldBars) + parseFloat(priceOffsets.buy.goldBars));
             
             // 银首饰
-            updatePriceElement('silverJewellerySell', currentPrices.sell.silverJewellery);
-            updatePriceElement('silverJewelleryBuy', currentPrices.buy.silverJewellery);
+            updatePriceElement('silverJewellerySell', (parseFloat(basePrices.sell.silverJewellery) + parseFloat(priceOffsets.sell.silverJewellery)).toFixed(1));
+            updatePriceElement('silverJewelleryBuy', (parseFloat(basePrices.buy.silverJewellery) + parseFloat(priceOffsets.buy.silverJewellery)).toFixed(1));
             
             // 银条
-            updatePriceElement('silverBarsSell', currentPrices.sell.silverBars);
-            updatePriceElement('silverBarsBuy', currentPrices.buy.silverBars);
+            updatePriceElement('silverBarsSell', (parseFloat(basePrices.sell.silverBars) + parseFloat(priceOffsets.sell.silverBars)).toFixed(1));
+            updatePriceElement('silverBarsBuy', (parseFloat(basePrices.buy.silverBars) + parseFloat(priceOffsets.buy.silverBars)).toFixed(1));
             
             // 中国黄金
-            updatePriceElement('chinaGoldSell', currentPrices.sell.chinaGold);
-            updatePriceElement('chinaGoldBuy', currentPrices.buy.chinaGold);
+            updatePriceElement('chinaGoldSell', (parseFloat(basePrices.sell.chinaGold) + parseFloat(priceOffsets.sell.chinaGold)).toFixed(1));
+            updatePriceElement('chinaGoldBuy', (parseFloat(basePrices.buy.chinaGold) + parseFloat(priceOffsets.buy.chinaGold)).toFixed(1));
             
             // 中国白银
-            updatePriceElement('chinaSilverSell', currentPrices.sell.chinaSilver);
-            updatePriceElement('chinaSilverBuy', currentPrices.buy.chinaSilver);
+            updatePriceElement('chinaSilverSell', (parseFloat(basePrices.sell.chinaSilver) + parseFloat(priceOffsets.sell.chinaSilver)).toFixed(2));
+            updatePriceElement('chinaSilverBuy', (parseFloat(basePrices.buy.chinaSilver) + parseFloat(priceOffsets.buy.chinaSilver)).toFixed(2));
         }
 
         // 更新单个价格元素（带闪烁动画）
         function updatePriceElement(id, newValue) {
             const element = document.getElementById(id);
-            if (element.textContent !== String(newValue)) {
-                element.textContent = newValue;
+            let displayValue = newValue;
+            
+            // 按品类格式化价格显示
+            if (id.includes('goldJewellery') || id.includes('goldBars')) {
+                displayValue = Math.round(newValue);
+            } else if (id.includes('silverJewellery') || id.includes('silverBars') || id.includes('chinaGold')) {
+                displayValue = parseFloat(newValue).toFixed(1);
+            } else if (id.includes('chinaSilver')) {
+                displayValue = parseFloat(newValue).toFixed(2);
+            }
+            
+            // 价格变化时触发闪烁动画
+            if (element.textContent !== String(displayValue)) {
+                element.textContent = displayValue;
                 element.classList.add('flash');
                 setTimeout(() => element.classList.remove('flash'), 500);
             }
         }
 
-        // 绑定编辑按钮事件（区分SELL/BUY）
+        // 绑定编辑按钮事件
         function bindEditorEvents() {
-            // 减号按钮
             document.querySelectorAll('.editor-btn.minus').forEach(btn => {
                 btn.addEventListener('click', function() {
-                    const type = this.dataset.type; // sell/buy
-                    const id = this.dataset.id;     // 商品ID
+                    const type = this.dataset.type;
+                    const id = this.dataset.id;
+                    let step = 1;
                     
-                    // 根据类型处理数值（整数/小数）
-                    if (id === 'goldJewellery' || id === 'goldBars') {
-                        currentPrices[type][id] = Math.max(0, currentPrices[type][id] - 1); // 整数减1
-                    } else if (id === 'silverJewellery' || id === 'silverBars' || id === 'chinaGold') {
-                        currentPrices[type][id] = (Math.max(0, parseFloat(currentPrices[type][id]) - 0.1)).toFixed(1); // 小数减0.1
-                    } else if (id === 'chinaSilver') {
-                        currentPrices[type][id] = (Math.max(0, parseFloat(currentPrices[type][id]) - 0.01)).toFixed(2); // 小数减0.01
-                    }
+                    // 按品类设置调整步长
+                    if (id === 'silverJewellery' || id === 'silverBars' || id === 'chinaGold') step = 0.1;
+                    else if (id === 'chinaSilver') step = 0.01;
+                    
+                    let newOffset = parseFloat(priceOffsets[type][id]) - step;
+                    // 限制偏移值范围
+                    newOffset = Math.max(CONFIG.PRICE_OFFSET_MIN, Math.min(CONFIG.PRICE_OFFSET_MAX, newOffset));
+                    
+                    // 格式化偏移值
+                    if (step === 1) priceOffsets[type][id] = Math.round(newOffset);
+                    else if (step === 0.1) priceOffsets[type][id] = newOffset.toFixed(1);
+                    else if (step === 0.01) priceOffsets[type][id] = newOffset.toFixed(2);
                     
                     updateEditorDisplay();
-                    updatePriceDisplay();
+                    updateFinalPriceDisplay();
                 });
             });
 
-            // 加号按钮
             document.querySelectorAll('.editor-btn.plus').forEach(btn => {
                 btn.addEventListener('click', function() {
-                    const type = this.dataset.type; // sell/buy
-                    const id = this.dataset.id;     // 商品ID
+                    const type = this.dataset.type;
+                    const id = this.dataset.id;
+                    let step = 1;
                     
-                    // 根据类型处理数值（整数/小数）
-                    if (id === 'goldJewellery' || id === 'goldBars') {
-                        currentPrices[type][id] += 1; // 整数加1
-                    } else if (id === 'silverJewellery' || id === 'silverBars' || id === 'chinaGold') {
-                        currentPrices[type][id] = (parseFloat(currentPrices[type][id]) + 0.1).toFixed(1); // 小数加0.1
-                    } else if (id === 'chinaSilver') {
-                        currentPrices[type][id] = (parseFloat(currentPrices[type][id]) + 0.01).toFixed(2); // 小数加0.01
-                    }
+                    // 按品类设置调整步长
+                    if (id === 'silverJewellery' || id === 'silverBars' || id === 'chinaGold') step = 0.1;
+                    else if (id === 'chinaSilver') step = 0.01;
+                    
+                    let newOffset = parseFloat(priceOffsets[type][id]) + step;
+                    // 限制偏移值范围
+                    newOffset = Math.max(CONFIG.PRICE_OFFSET_MIN, Math.min(CONFIG.PRICE_OFFSET_MAX, newOffset));
+                    
+                    // 格式化偏移值
+                    if (step === 1) priceOffsets[type][id] = Math.round(newOffset);
+                    else if (step === 0.1) priceOffsets[type][id] = newOffset.toFixed(1);
+                    else if (step === 0.01) priceOffsets[type][id] = newOffset.toFixed(2);
                     
                     updateEditorDisplay();
-                    updatePriceDisplay();
+                    updateFinalPriceDisplay();
                 });
             });
         }
@@ -724,16 +834,17 @@
         // 初始化
         async function init() {
             updateDateTime();
-            // 首次加载实时价格
-            await updateRealTimePrices();
-            bindEditorEvents();
-            // 定时更新（30秒一次，可在CONFIG中调整）
-            setInterval(updateRealTimePrices, CONFIG.UPDATE_INTERVAL);
+            updateEditorDisplay();
+            await updateBasePrices(); // 首次加载：获取并计算价格
+            bindEditorEvents(); // 绑定编辑按钮事件
+            
+            // 定时更新：3秒更新一次（匹配API请求间隔）
+            setInterval(updateBasePrices, CONFIG.API_CONFIG.REQUEST_INTERVAL);
             // 实时更新时间
             setInterval(updateDateTime, 1000);
         }
 
-        // 启动初始化
+        // 启动程序
         init();
     </script>
 </body>
